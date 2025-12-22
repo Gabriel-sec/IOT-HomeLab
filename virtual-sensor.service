@@ -1,0 +1,15 @@
+[Unit]
+Description=Fictional IoT Temperature Sensor
+After=network.target
+
+[Service]
+Environment=USER_NAME=vagrant
+ExecStart=/usr/bin/python3 /home/${USER_NAME}/virtual-sensor/sensor.py
+User=vagrant
+Restart=always
+# Systemd handles the logging here:
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
