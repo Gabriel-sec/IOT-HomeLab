@@ -1,0 +1,1 @@
+#Keep all constants and file paths in one place to avoid hardcoding.
