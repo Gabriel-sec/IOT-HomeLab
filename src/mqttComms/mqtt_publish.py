@@ -1,10 +1,6 @@
-from mqtt_connect import MQTTConnector
-import time
-
-# Set the broker address, port and topic(s)    
-BROKER_ADDRESS = "broker.emqx.io"
-BROKER_PORT = 1883
-TOPIC = "python/mqtt"
+from src.mqttComms.mqtt_connect import MQTTConnector
+import time #This comes pre-installed with Python. No need to define it as a dependency in poetry
+from src.config.settings import BROKER_ADDRESS, BROKER_PORT, TOPIC
 
 class MQTTPublisher(MQTTConnector):
     # Client is created and the hooks are attached before the Publisher starts its own work.

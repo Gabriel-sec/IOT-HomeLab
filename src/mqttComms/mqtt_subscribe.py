@@ -1,10 +1,6 @@
-from mqtt_connect import MQTTConnector
+from src.mqttComms.mqtt_connect import MQTTConnector
 import time
-
-# Set the broker address, port and topic(s)    
-BROKER_ADDRESS = "broker.emqx.io"
-BROKER_PORT = 1883
-TOPIC = "python/mqtt"
+from src.config.settings import BROKER_ADDRESS, BROKER_PORT, TOPIC
 
 class MQTTSubscriber(MQTTConnector):
     def __init__(self,BROKER_ADDRESS,BROKER_PORT,TOPIC):
