@@ -1,11 +1,11 @@
-import socket
+import socket #This comes pre-installed with Python. No need to define it as a dependency in poetry
 import paho.mqtt.client as mqtt
-from paho.mqtt.enums import CallbackAPIVersion
+from src.config.settings import API_VERSION, MQTT_VERSION
 
 class MQTTConnector():
     def __init__(self,BROKER_ADDRESS,BROKER_PORT):
             # Create an MQTT client instance and using the mqtt version v5
-            self.client=mqtt.Client(CallbackAPIVersion.VERSION2, protocol=mqtt.MQTTv5)
+            self.client=mqtt.Client(callback_api_version=API_VERSION, protocol=MQTT_VERSION)
             
             self.BROKER_ADDRESS=BROKER_ADDRESS
             self.BROKER_PORT=BROKER_PORT

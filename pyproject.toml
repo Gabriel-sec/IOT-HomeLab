@@ -1,0 +1,19 @@
+[project]
+name = "iot-homelab"
+version = "0.1.0"
+description = "Implement digital twin, devsecops, software, devops, sre, data management and cloud best practices"
+authors = [
+    {name = "Gabriel-sec",email = "78434712+Gabriel-sec@users.noreply.github.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "paho-mqtt (>=2.1.0,<3.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "src"}] #Tells poetry to look inside src/ folder
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
