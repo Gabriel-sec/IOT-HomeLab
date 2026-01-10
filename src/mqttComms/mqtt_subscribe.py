@@ -1,6 +1,4 @@
 from src.mqttComms.mqtt_connect import MQTTConnector
-import time
-from src.config.settings import BROKER_ADDRESS, BROKER_PORT, TOPIC
 
 class MQTTSubscriber(MQTTConnector):
     def __init__(self,BROKER_ADDRESS,BROKER_PORT,TOPIC):
@@ -24,18 +22,4 @@ class MQTTSubscriber(MQTTConnector):
         self.client.subscribe(self.TOPIC)
         print(f"Listening on {self.TOPIC}...")
 
-
-
-if __name__ == "__main__":
-    mqtt_subscribe = MQTTSubscriber(BROKER_ADDRESS,BROKER_PORT, TOPIC)
-    mqtt_subscribe.start()        
-    try:
-        # Keep listening indefinitely (Ctrl+C to stop)
-        while True:
-            time.sleep(1)
-    except KeyboardInterrupt:
-        print("\nStopping subscriber...")
-    finally:
-        mqtt_subscribe.client.loop_stop()
-        mqtt_subscribe.client.disconnect()
     

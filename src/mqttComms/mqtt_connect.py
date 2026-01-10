@@ -1,6 +1,6 @@
 import socket #This comes pre-installed with Python. No need to define it as a dependency in poetry
 import paho.mqtt.client as mqtt
-from src.config.settings import API_VERSION, MQTT_VERSION
+from src.config import API_VERSION, MQTT_VERSION
 
 class MQTTConnector():
     def __init__(self,BROKER_ADDRESS,BROKER_PORT):
