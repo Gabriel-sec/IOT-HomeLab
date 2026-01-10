@@ -1,6 +1,4 @@
 from src.mqttComms.mqtt_connect import MQTTConnector
-import time
-from src.config import BROKER_ADDRESS, BROKER_PORT, TOPIC
 
 class MQTTSubscriber(MQTTConnector):
     def __init__(self,BROKER_ADDRESS,BROKER_PORT,TOPIC):
