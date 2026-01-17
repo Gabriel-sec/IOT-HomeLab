@@ -11,7 +11,6 @@ class MQTTPublisher(MQTTConnector):
         msg_count = 1
         while True:
             time.sleep(1)
-            #msg = f"messages: {msg_count}"
             result = self.client.publish(self.TOPIC, msg)
             # result: [0, 1]
             status = result[0]
