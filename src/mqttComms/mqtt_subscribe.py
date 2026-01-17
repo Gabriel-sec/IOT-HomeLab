@@ -17,7 +17,6 @@ class MQTTSubscriber(MQTTConnector):
         print(f"New Message: {readable_msg} from {msg.topic}")
     
     def start(self):
-        self.broker_connection()
         #Tell the broker we want to listen to this topic
         self.client.subscribe(self.TOPIC)
         print(f"Listening on {self.TOPIC}...")

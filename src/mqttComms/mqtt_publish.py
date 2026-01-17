@@ -21,8 +21,7 @@ class MQTTPublisher(MQTTConnector):
             msg_count += 1
             if msg_count > 5:
                 break
-    def start(self, msg):
-        self.broker_connection()
+    def start(self, msg):        
         self.publish(msg)
     
 
