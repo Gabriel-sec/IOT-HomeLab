@@ -23,3 +23,6 @@ packages = [{include = "src"}] #Tells poetry to look inside src/ folder
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+iot = "src.__main__:start"

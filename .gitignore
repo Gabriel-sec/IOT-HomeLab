@@ -1,3 +1,4 @@
 .vagrant/
 Project_Planning/
 __pycache__/
+dist

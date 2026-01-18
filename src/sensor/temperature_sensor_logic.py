@@ -29,7 +29,3 @@ def run_subscriber(mqtt_subscribe):
     finally:
         mqtt_subscribe.client.loop_stop()
         mqtt_subscribe.client.disconnect()
-
- 
-        
-        
