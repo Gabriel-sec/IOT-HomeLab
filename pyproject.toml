@@ -13,6 +13,11 @@ dependencies = [
 ]
 
 [tool.poetry]
+name = "iot-homelab"
+version = "0.1.0"
+readme = "README.md"
+description = "IoT HomeLab to practice DevOps, IoT, industrial 4.0, AI and DevSecOps tooling and processes"
+authors = ["Gabriel Sincan <gabisinc66@hotmail.com>"]
 packages = [{include = "src"}] #Tells poetry to look inside src/ folder
 
 [build-system]
