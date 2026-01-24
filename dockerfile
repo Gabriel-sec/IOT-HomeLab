@@ -1,5 +1,11 @@
 FROM python:3.12.10-slim-bookworm
 
+# Fix for OS vulnerabilities (glibc, etc.)
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 # Python
 ENV PYTHONFAULTHANDLER=1 \
     PYTHONUNBUFFERED=1 \
