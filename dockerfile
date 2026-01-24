@@ -13,13 +13,13 @@ ENV POETRY_NO_INTERACTION=1 \
     POETRY_VIRTUALENVS_CREATE=false \
     #Tells Poetry where to store downloaded files. 
     #This is useful if you want to "mount" a folder from your host to speed up repeated builds.
-    POETRY_CACHE_DIR='/var/cache/pypoetry' \ 
+    POETRY_CACHE_DIR='/var/cache/pypoetry' \
     #Tells the system where to install the Poetry executable so you can run the poetry command from any folder.
     POETRY_HOME='/usr/local' \
     POETRY_VERSION=1.8.3
 
 # Install curl (to install poetry after)
-RUN pip install --no-cache-dir poetry==1.8.3
+RUN pip install --no-cache-dir poetry==${POETRY_VERSION}
 
 WORKDIR /app
 
