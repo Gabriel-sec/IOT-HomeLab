@@ -1,6 +1,6 @@
 BOX_IMAGE = "fkrull/fedora-iot"
 BOX_VERSION = "38.20230419.2-1.4.1"
-NODE_COUNT = 2
+NODE_COUNT = 1
 
 Vagrant.configure("2") do |config| #2 being the API version
   config.vm.box = BOX_IMAGE
