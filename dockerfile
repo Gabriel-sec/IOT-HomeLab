@@ -23,7 +23,7 @@ ENV POETRY_NO_INTERACTION=1 \
     POETRY_CACHE_DIR='/var/cache/pypoetry' \
     #Tells the system where to install the Poetry executable so you can run the poetry command from any folder.
     POETRY_HOME='/usr/local' \
-    POETRY_VERSION=1.8.3
+    POETRY_VERSION=2.1.3
 
 # Install curl (to install poetry after)
 RUN pip install --no-cache-dir poetry==${POETRY_VERSION}
