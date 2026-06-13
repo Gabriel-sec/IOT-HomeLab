@@ -16,6 +16,7 @@ ENV PYTHONFAULTHANDLER=1 \
 
 # Poetry
 ENV POETRY_NO_INTERACTION=1 \
+    #The next thing to keep in mind is virtualenv creation. We do not need it in Docker. It is already isolated. So, we use POETRY_VIRTUALENVS_CREATE=false or poetry config virtualenvs.create false setting to turn it off.
     POETRY_VIRTUALENVS_CREATE=false \
     #Tells Poetry where to store downloaded files. 
     #This is useful if you want to "mount" a folder from your host to speed up repeated builds.
@@ -27,11 +28,12 @@ ENV POETRY_NO_INTERACTION=1 \
 # Install curl (to install poetry after)
 RUN pip install --no-cache-dir poetry==${POETRY_VERSION}
 
+#WORKDIR instruction is used to set the working directory for all the subsequent Dockerfile instructions. Default path is /
 WORKDIR /app
 
-#We copy these first. If we change the code, Docker will reuse this cached layer
+#We copy these first. If we change the code, Docker will reuse this cached layer. We want to cache our requirements and only reinstall them when pyproject.toml or poetry.lock files change. Otherwise builds will be slow. To achieve working cache layer we should put:
 COPY pyproject.toml poetry.lock /app/
-
+#Reminder: The COPY [OPTIONS] <src> ... <dest> instruction copies new files or directories from <src> and adds them to the filesystem of the image at the path <dest>
 COPY . /app
 
 CMD ["poetry", "run", "python", "main.py", "pub"]
