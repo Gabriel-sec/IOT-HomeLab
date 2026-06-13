@@ -1,0 +1,6 @@
+__pycache__/
+.vagrant/
+Optional_Features/
+Project_Planning
+Vagrantfile
+dist
