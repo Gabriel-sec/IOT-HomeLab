@@ -36,4 +36,4 @@ COPY pyproject.toml poetry.lock /app/
 #Reminder: The COPY [OPTIONS] <src> ... <dest> instruction copies new files or directories from <src> and adds them to the filesystem of the image at the path <dest>
 COPY . /app
 
-CMD ["poetry", "run", "python", "main.py", "sub"]
+CMD ["poetry", "run", "python", "main.py", "pub"]
