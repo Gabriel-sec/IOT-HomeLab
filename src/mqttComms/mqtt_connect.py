@@ -1,11 +1,18 @@
+import uuid
 import socket #This comes pre-installed with Python. No need to define it as a dependency in poetry
 import paho.mqtt.client as mqtt
 from src.config import API_VERSION, MQTT_VERSION
 
 class MQTTConnector():
     def __init__(self,BROKER_ADDRESS,BROKER_PORT):
+            #Generate a unique ID like "Subscriber-f47ac10b..." 
+            #MQTT has a strict rule: There can be only one client connected with a specific Client ID. This guarantees your subscriber always gets a fresh, unique connection, you can explicitly generate a unique Client ID every time the script runs.
+            #If you use Ctrl+C to stop your subscriber, but WSL doesn't perfectly kill the background thread, a "zombie" Python process might stay silently connected to Mosquitto. 
+            #When you start the script again, the broker sees two identical clients trying to exist at the same time.The broker forcibly kicks the old one to let the new one in, which can trigger a brief disconnect warning in your terminal before it settles.
+            #By creating a new publisher it naturally prevents memory exhaustion and ensures your system only processes the most current, real-time data the moment the connection is restored.
+            unique_id = f"Client-{uuid.uuid4().hex[:8]}"
             # Create an MQTT client instance and using the mqtt version v5
-            self.client=mqtt.Client(callback_api_version=API_VERSION, protocol=MQTT_VERSION)
+            self.client=mqtt.Client(client_id=unique_id,callback_api_version=API_VERSION, protocol=MQTT_VERSION)
             
             self.BROKER_ADDRESS=BROKER_ADDRESS
             self.BROKER_PORT=BROKER_PORT
@@ -22,8 +29,8 @@ class MQTTConnector():
         else:
             print(f"Failed to connect, result code {reason_code}")
     
-    def on_disconnect_callback(self, client, userdata, disconnect_flags, reason_code, properties=None):
-        print("Disconnected from broker.")
+    def on_disconnect_callback(self, client, userdata, disconnect_flags, reason_code, properties=None):        
+        print(f"Disconnected from broker. reason_code: {reason_code}")
 
     def broker_connection(self):
         try:
