@@ -10,7 +10,8 @@ class MQTTPublisher(MQTTConnector):
     def publish(self, msg):
         msg_count = 1
         while True:
-            time.sleep(1)
+            time.sleep(0.4)
+            # Send the message 
             result = self.client.publish(self.TOPIC, msg)
             # result: [0, 1]
             status = result[0]
@@ -19,9 +20,16 @@ class MQTTPublisher(MQTTConnector):
             else:
                 print(f"Failed to send message to topic {self.TOPIC}")
             msg_count += 1
-            if msg_count > 5:
+            if msg_count > 2:
                 break
-    def start(self, msg):        
+    def start(self, msg):
+        # 1. Trigger the connection
+        self.broker_connection()
+        # Instead of guessing how long the network handshake will take, this forces the script to wait exactly as long as necessary (checking every 100 milliseconds) before letting the publish() loop begin.
+        while not self.client.is_connected():
+            time.sleep(0.1)
+        
+        # 3. Now that the green light is given, start publishing
         self.publish(msg)
     
 
