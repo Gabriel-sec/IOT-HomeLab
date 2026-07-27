@@ -33,7 +33,7 @@ ENV POETRY_VIRTUALENVS_IN_PROJECT=false \
 # Install Poetry
 RUN pip install --no-cache-dir poetry==${POETRY_VERSION}
 
-#WORKDIR instruction is used to set the working directory for all the subsequent Dockerfile instructions. Default path is /
+# Set working directory
 WORKDIR /app
 
 # Copy dependency files first (for layer caching)
